@@ -1,0 +1,837 @@
+@charset "UTF-8";
+/*
+Theme Name: Tomoko's Portfolio Site
+Description: WordPressオリジナルテーマ
+Version: 1.0
+Author: Tomoko
+Author URI: https://tomoko-hp.com
+*/
+/*
+HEADER - header.php -
+================================================== */
+/*
+COMMON
+---------------------------------------- */
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;
+  -webkit-font-feature-settings: "palt";
+          font-feature-settings: "palt";
+}
+
+p {
+  font-family: "Noto Serif JP";
+  font-weight: 400;
+  font-size: max(0.86dvw, 12px);
+  letter-spacing: 0.175em;
+  line-height: 1.75;
+}
+
+/*
+ローディング画面
+---------------------------------------- */
+.loading {
+  width: 100vw;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  position: fixed;
+  top: 0;
+  background: #ffffff;
+  z-index: 9999;
+}
+
+/*
+ナビゲーションメニュー
+---------------------------------------- */
+header {
+  position: fixed;
+  top: 0;
+  pointer-events: none;
+}
+
+.nav-wrapper {
+  width: 100dvw;
+  height: 100px;
+  display: grid;
+  place-items: center;
+}
+
+.primary-navigation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: "bely", serif;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 0.125em;
+}
+.menu li {
+  margin-left: 50px;
+  pointer-events: auto;
+}
+
+#logo {
+  width: 32px;
+  position: relative;
+  top: -3px;
+  pointer-events: auto;
+}
+
+#open {
+  visibility: hidden;
+}
+
+/* logo hover */
+.logo {
+  -webkit-transition: 0.9s ease;
+  transition: 0.9s ease;
+}
+
+@media (any-hover: hover) {
+  .logo:hover {
+    fill: #910017;
+  }
+}
+/* menu hover */
+.menu-item a {
+  -webkit-transition: 0.9s ease;
+  transition: 0.9s ease;
+}
+
+@media (any-hover: hover) {
+  .menu-item a:hover {
+    color: #910017;
+  }
+}
+/*
+SNSタグ
+---------------------------------------- */
+.sns-area {
+  display: grid;
+  place-items: center;
+  width: 80px;
+  height: 160px;
+  background: #000000;
+  border-radius: 0 0 50% 50%/0 0 30% 30%;
+  position: fixed;
+  top: 0;
+  right: 20dvw;
+  pointer-events: none;
+}
+
+.sns-item {
+  pointer-events: auto;
+}
+
+/* sns hover */
+.sns-area {
+  -webkit-transition: 0.9s ease;
+  transition: 0.9s ease;
+}
+
+/*
+スライドメニュー
+---------------------------------------- */
+footer {
+  pointer-events: none;
+}
+
+.btn {
+  font-family: "bely", serif;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 0.125em;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9998;
+}
+
+.slide-menu-area {
+  width: 100dvw;
+  height: 100dvh;
+  display: grid;
+  place-items: center;
+  position: fixed;
+  top: 0;
+  background: #ffffff;
+  z-index: 9998;
+  translate: 100dvw;
+}
+
+.slide-menu {
+  margin-bottom: max(10dvw, 220px);
+  font-family: "bely", serif;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 0.125em;
+}
+.slide-menu li {
+  width: max(20dvw, 150px);
+  margin: auto;
+  padding: max(3dvw, 25px) 0.75rem;
+  pointer-events: auto;
+}
+
+.slide-sns-tags {
+  width: 100dvw;
+  height: 100px;
+  display: grid;
+  place-items: center right;
+  position: fixed;
+  bottom: 0;
+  background: #000000;
+  pointer-events: none;
+}
+.slide-sns-tags a {
+  position: sticky;
+  right: 20px;
+  pointer-events: auto;
+}
+
+/*
+HOME - index.php -
+================================================== */
+/*
+スライドショー
+---------------------------------------- */
+.slide-show .title {
+  font-size: max(6vw, 40px);
+  text-align: center;
+  color: #ffffff;
+  -webkit-filter: drop-shadow(0 0 7px rgba(0, 0, 0, 0.2));
+          filter: drop-shadow(0 0 7px rgba(0, 0, 0, 0.2));
+  position: fixed;
+  top: max(5dvw, 65px);
+  left: 10px;
+  z-index: -1;
+}
+.slide-show .title span {
+  font-size: 90%;
+  position: relative;
+  top: max(-0.3dvw, -10px);
+}
+.slide-show img {
+  width: max(26dvw, 300px);
+  height: 120dvh;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 100% 20%;
+     object-position: 100% 20%;
+  border-radius: 0 100% 100% 0/0 50% 50% 0;
+  position: fixed;
+  top: max(-3vw, -200px);
+  left: 0;
+  z-index: -2;
+  opacity: 0;
+}
+.slide-show img.active {
+  z-index: -1;
+  opacity: 0;
+}
+
+.slide-first-item {
+  opacity: 1;
+}
+
+/*
+自己紹介
+---------------------------------------- */
+.title {
+  font-family: "bely-display", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: 0.075em;
+  line-height: 1.05;
+}
+
+.parent {
+  height: 100dvh;
+  position: relative;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.about-me {
+  position: absolute;
+  top: 40dvh;
+  right: 20dvw;
+  padding: 1rem;
+}
+.about-me h3 {
+  margin-bottom: 10px;
+}
+
+.fadein {
+  opacity: 0;
+  translate: 0, 2rem;
+  -webkit-filter: blur(10px);
+          filter: blur(10px);
+}
+
+.marker {
+  display: inline-block;
+  background-image: -webkit-gradient(linear, left top, right top, from(rgb(255, 243, 63)), color-stop(50%, rgb(255, 243, 63)), color-stop(50%, transparent), to(transparent));
+  background-image: linear-gradient(90deg, rgb(255, 243, 63), rgb(255, 243, 63) 50%, transparent 50%, transparent);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+}
+
+/*
+フッターを最下部に固定 ※HOMEページのフッター
+---------------------------------------- */
+.just-footer {
+  position: fixed;
+  bottom: 0;
+}
+
+/*
+FOOTER - footer.php -
+================================================== */
+footer {
+  width: 100dvw;
+  height: 100px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+/*
+SKILLS - page-skills.php -
+================================================== */
+/*
+HEADER ※下層ページのヘッダーに変更
+---------------------------------------- */
+.lower-page-header {
+  background: rgba(255, 255, 255, 0.7);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  z-index: 3;
+}
+
+/* ページタイトル ※HOMEページは非表示にする */
+.page-title {
+  font-size: max(4vw, 40px);
+  text-align: center;
+  color: #000000;
+  position: fixed;
+  top: max(6dvw, 70px);
+  left: min(-15dvw, -30px);
+  -webkit-transform: translate(max(25dvw, 70px), 0) rotate(-10deg);
+          transform: translate(max(25dvw, 70px), 0) rotate(-10deg);
+}
+.page-title::before {
+  content: "";
+  width: 300px;
+  height: 1px;
+  display: inline-block;
+  background: #000000;
+  position: absolute;
+  top: 16%;
+  left: -300px;
+  width: 400px;
+  top: 50%;
+  left: -413px;
+}
+
+.none {
+  position: absolute;
+  visibility: hidden;
+}
+
+/*
+MAIN ※下層ページ用のレイアウトに変更
+---------------------------------------- */
+.lower-page-main {
+  margin-top: max(15dvw, 170px);
+}
+
+/*
+SECTION NAME
+---------------------------------------- */
+.section-name {
+  font-family: "Noto Serif JP";
+  font-weight: 900;
+  font-size: 24px;
+  letter-spacing: 0.175em;
+  line-height: 1.75;
+  color: #cccccc;
+  text-align: center;
+  margin-bottom: 70px;
+}
+.section-name p {
+  font-size: 20px;
+}
+
+/*
+デザイン
+---------------------------------------- */
+.item {
+  text-align: center;
+  height: 300px;
+  padding: 2rem 0;
+}
+.item img {
+  width: 70px;
+  margin-bottom: 0.5em;
+}
+.item h2 {
+  font-family: "Noto Serif JP";
+  font-weight: 900;
+  font-size: 20px;
+  letter-spacing: 0.175em;
+  line-height: 1.75;
+  margin-bottom: 0.75em;
+}
+.item p {
+  text-align: justify;
+}
+
+.section {
+  max-width: 820px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 70px max(5dvw, 70px);
+  padding: 0 20px;
+  margin: 0 auto 100px;
+}
+
+/* レスポンシブサイドバー */
+.responsive-sidebar {
+  font-family: "Noto Serif JP";
+  font-weight: 900;
+  font-size: 16px;
+  letter-spacing: 0.175em;
+  line-height: 1.75;
+  color: #cccccc;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  position: fixed;
+  top: max(20vw, 220px);
+  left: -30px;
+  visibility: hidden;
+  width: 100px;
+  text-align: right;
+}
+
+/*
+コーディング
+---------------------------------------- */
+/* イメージサイズの変更 */
+.img-size img {
+  width: 100px;
+}
+
+/*
+WORK - page-work.php -
+================================================== */
+/*
+WEBサイト制作
+---------------------------------------- */
+.work-section .item {
+  height: auto;
+}
+.work-section .item img {
+  width: 100%;
+}
+.work-section .item p {
+  text-align: center;
+  font-size: max(0.86dvw, 10px);
+  margin-bottom: 0.75em;
+}
+.work-section .item span {
+  display: inline-block;
+}
+.work-section .item div p {
+  text-align: justify;
+  font-size: max(0.86dvw, 14px);
+}
+.work-section .item .prototype {
+  font-family: "Noto Serif JP";
+  font-weight: 400;
+  font-size: max(0.86dvw, 12px);
+  letter-spacing: 0.175em;
+  line-height: 1.75;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 0.5rem 1rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 1.75rem;
+  /* site-linkボタンのみ装飾変更 */
+}
+.work-section .item .prototype p {
+  font-family: "Noto Serif JP";
+  font-weight: 400;
+  font-size: max(0.86dvw, 12px);
+  letter-spacing: 0.175em;
+  line-height: 1.75;
+  margin-bottom: unset;
+  -ms-flex-item-align: center;
+      align-self: center;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(30%, rgb(255, 243, 63)), color-stop(30%, transparent));
+  background: linear-gradient(0deg, rgb(255, 243, 63) 30%, transparent 30%);
+}
+.work-section .item .prototype a {
+  display: grid;
+  grid-auto-flow: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: max(2.5dvw, 2.5rem);
+  color: #ffffff;
+  padding: 0.25em 0.5em;
+  letter-spacing: 0.15em;
+  border: 2px solid #000000;
+  background: #ffffff;
+  border-radius: 50px;
+}
+.work-section .item .prototype span {
+  color: #000000;
+  font-size: max(0.86dvw, 0.5rem);
+}
+.work-section .item .prototype img {
+  width: max(1dvw, 1.5rem);
+  aspect-ratio: 1/1;
+  margin-bottom: unset;
+  margin-right: 0.25em;
+}
+.work-section .item .prototype .site-link img {
+  width: max(2dvw, 2rem);
+}
+
+.section.work-section {
+  gap: 70px 50dvw;
+}
+
+.work-section .item h2 {
+  font-size: max(1.5dvw, 20px);
+}
+
+/* prototype hover */
+.work-section .item a {
+  -webkit-transition: 0.9s ease;
+  transition: 0.9s ease;
+}
+
+@media (any-hover: hover) {
+  .work-section .item a:hover {
+    -webkit-filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.2));
+            filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.2));
+  }
+}
+/*
+CONTACT - page-contact.php -
+================================================== */
+/*
+フォーム デフォルト
+---------------------------------------- */
+.form {
+  max-width: 820px;
+  padding: 0 20px;
+  margin: auto;
+}
+.form p {
+  margin-bottom: 100px;
+}
+
+.contact-form {
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.form-item {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: justify;
+}
+.form-item label {
+  margin-bottom: 0.45em;
+}
+
+.section-name.margin-unset {
+  margin-bottom: unset;
+}
+
+/* input, textareaの装飾 */
+input,
+textarea {
+  font-family: "Noto Serif JP";
+  font-weight: 400;
+  font-size: max(0.86dvw, 12px);
+  letter-spacing: 0.175em;
+  line-height: 1.75;
+  color: #000000;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+}
+
+/* フォーカス時の装飾 */
+.outline-delete:focus-visible {
+  outline: none;
+  -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+}
+
+/*
+フォーム WordPress用
+---------------------------------------- */
+/* フォーカス時の装飾 */
+.section-name input:focus-visible {
+  outline: none;
+  -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+}
+.section-name textarea:focus-visible {
+  outline: none;
+  -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+}
+
+/* レイアウト */
+.section-name span.wpcf7-form-control-wrap {
+  margin-left: unset;
+}
+
+.form .section-name p {
+  margin-bottom: 0;
+}
+
+.contact-form div,
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+}
+
+/* 送信ボタン */
+.contact-form .wpcf7-submit {
+  width: 80px;
+  height: 160px;
+  background: #000000;
+  border-radius: 0 0 50% 50%/0 0 30% 30%;
+  width: 100px;
+  font-family: "Noto Serif JP";
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.175em;
+  line-height: 1.75;
+  text-align: center;
+  color: #ffffff;
+  padding-bottom: 30px;
+  position: relative;
+}
+
+.contact-form .section-name:nth-child(4) {
+  margin-bottom: unset;
+}
+
+.contact-form .section-name:nth-child(4) > p > label {
+  margin-bottom: unset;
+}
+
+/* 送信時のレスポンシブの装飾 */
+.wpcf7 form .wpcf7-response-output {
+  font-family: "Noto Serif JP";
+  font-weight: 400;
+  font-size: max(0.86dvw, 12px);
+  letter-spacing: 0.175em;
+  line-height: 1.75;
+  margin: unset;
+  margin-bottom: 70px;
+  padding: 0.2em 1em;
+  border: unset;
+  border-bottom: 6px dotted #00a0d2;
+}
+
+/* spanの透明度をリセットする */
+.contact-form .section-name > p > label > span:nth-child(1) {
+  font-size: 14px;
+  margin-left: 0.7em;
+  opacity: 1;
+}
+
+/*
+MOBILE SIZE - width < 1200px -
+================================================== */
+@media (width < 1200px) {
+  /* HEADER
+  ------------------------------------ */
+  .sns-area {
+    visibility: hidden;
+  }
+  /* 上部設置メニューのBG */
+  .lower-page-header {
+    background: none;
+    -webkit-backdrop-filter: unset;
+            backdrop-filter: unset;
+  }
+  .lower-page-header::after {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    content: "";
+    width: 100dvw;
+    height: max(15dvw, 160px);
+    background: rgba(255, 255, 255, 0.7);
+    -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+    z-index: -1;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10vw), 0 100%);
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10vw), 0 100%);
+  }
+  /* FOOTER
+  ------------------------------------ */
+  footer {
+    z-index: -1;
+  }
+  /* スライドメニュー
+  ------------------------------------ */
+  #open {
+    visibility: visible;
+    pointer-events: auto;
+  }
+  #close {
+    pointer-events: auto;
+  }
+  #logo {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+  }
+  .menu {
+    position: absolute;
+    visibility: hidden;
+  }
+  /* HOME
+  ------------------------------------ */
+  /* スライドショー */
+  .slide-show .title {
+    color: #000000;
+    -webkit-filter: drop-shadow(0 0 7px rgba(255, 255, 255, 0.7));
+            filter: drop-shadow(0 0 7px rgba(255, 255, 255, 0.7));
+    -webkit-transform: translate(max(25dvw, 70px), 0) rotate(-10deg);
+            transform: translate(max(25dvw, 70px), 0) rotate(-10deg);
+  }
+  .slide-show .title::before {
+    content: "";
+    width: 300px;
+    height: 1px;
+    display: inline-block;
+    background: #000000;
+    position: absolute;
+    top: 16%;
+    left: -300px;
+  }
+  .slide-show img {
+    width: max(45dvw, 300px);
+    height: auto;
+    aspect-ratio: 1/1;
+    -o-object-position: 50%;
+       object-position: 50%;
+    border-radius: 50%;
+    top: max(5dvw, 65px);
+    left: calc((100dvw - max(45dvw, 300px)) / 2);
+  }
+  .slide-screen {
+    width: 100dvw;
+    height: max(35dvw, 280px);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(30%, #ffffff), to(transparent));
+    background: linear-gradient(180deg, #ffffff 30%, transparent);
+    position: fixed;
+    top: 0;
+    z-index: -1;
+  }
+  /* 自己紹介 */
+  .about-me {
+    text-align: center;
+    top: unset;
+    right: 0;
+    background: linear-gradient(45deg, #ffffff, transparent);
+    -webkit-backdrop-filter: blur(2px);
+            backdrop-filter: blur(2px);
+    bottom: 0;
+    padding-bottom: 20dvh;
+    width: 100%;
+  }
+  /* SKILLS
+  ------------------------------------ */
+  .section {
+    padding: 0 20px 0 40px;
+  }
+  .section-name {
+    margin-left: 20px;
+  }
+  /* レスポンシブサイドバーを表示する */
+  .responsive-sidebar {
+    visibility: visible;
+  }
+  /* CONTACT
+  ------------------------------------ */
+  .page-template-page-contact .section-name {
+    margin-left: unset;
+  }
+}
+/*
+MOBILE SIZE - width < 720px -
+================================================== */
+@media (width < 720px) {
+  /* HOME
+  ------------------------------------ */
+  .about-me {
+    text-align: left;
+  }
+  /* SKILLS
+  ------------------------------------ */
+  .item {
+    height: unset;
+  }
+  /* WORK
+  ------------------------------------ */
+  .work-section .item {
+    height: unset;
+  }
+}
+/*
+MOBILE SIZE - width > 600px -
+================================================== */
+@media (width < 600px) {
+  /* CONTACT FORM
+     ------------------------------------ */
+  .contact-form input[type=email],
+  .contact-form input[type=tel],
+  .contact-form input[type=text],
+  .contact-form input[type=url] {
+    width: 100%;
+  }
+  /* WORK SITE LINK
+  ------------------------------------ */
+  .work-section .item .prototype a {
+    grid-auto-flow: row;
+    justify-items: center;
+    min-height: max(2.5dvw, 4rem);
+    padding: 0.25em 1.5em;
+    border: 1px solid #000000;
+  }
+  .work-section .item .prototype img {
+    margin-right: unset;
+  }
+}/*# sourceMappingURL=style.css.map */
